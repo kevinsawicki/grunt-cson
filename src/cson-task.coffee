@@ -11,14 +11,14 @@ module.exports = (grunt) ->
       destination = mapping.dest
 
       try
-        object = CSON.readFileSync(source)
+        content = CSON.readFileSync(source)
 
-        if requireRoot and (not _.isObject(object) or _.isArray(object))
+        if requireRoot and (not _.isObject(content) or _.isArray(content))
           grunt.log.error("#{source} does not contain a root object")
           return false
 
-        grunt.file.mkdir(path.dirname(destination))
-        CSON.writeFileSync(destination, object)
+        json = JSON.stringify(content, null, 2)
+        grunt.file.write(destination, "#{json}\n")
         grunt.log.writeln("File #{destination.cyan} created.")
       catch error
         grunt.log.error("Parsing #{source.cyan} failed: #{error.message}")
