@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>grunt-cson by kevinsawicki</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>grunt-cson</h1>
+        <p>Grunt CSON plugin</p>
+
+        <p class="view"><a href="https://github.com/kevinsawicki/grunt-cson">View the Project on GitHub <small>kevinsawicki/grunt-cson</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/kevinsawicki/grunt-cson/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/kevinsawicki/grunt-cson/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/kevinsawicki/grunt-cson">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="grunt-cson-plugin-" class="anchor" href="#grunt-cson-plugin-"><span class="octicon octicon-link"></span></a>Grunt CSON plugin <a href="https://travis-ci.org/kevinsawicki/grunt-cson"><img src="https://travis-ci.org/kevinsawicki/grunt-cson.png" alt="Build Status"></a>
+</h1>
+
+<p><a href="http://gruntjs.com">Grunt</a> plugin to compile CSON files to JSON.</p>
+
+<h2>
+<a name="installing" class="anchor" href="#installing"><span class="octicon octicon-link"></span></a>Installing</h2>
+
+<div class="highlight"><pre>npm install grunt-cson
+</pre></div>
+
+<h2>
+<a name="building" class="anchor" href="#building"><span class="octicon octicon-link"></span></a>Building</h2>
+
+<ul>
+<li>Clone the repository</li>
+<li>Run <code>npm install</code>
+</li>
+<li>Run <code>grunt</code> to compile the CoffeeScript code</li>
+<li>Run <code>grunt test</code> to run the specs</li>
+</ul><h2>
+<a name="configuring" class="anchor" href="#configuring"><span class="octicon octicon-link"></span></a>Configuring</h2>
+
+<p>Add the following to your <code>Gruntfile.coffee</code>:</p>
+
+<div class="highlight"><pre><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span>
+  <span class="nv">cson:</span>
+    <span class="nv">glob_to_multiple:</span>
+      <span class="nv">expand: </span><span class="kc">true</span>
+      <span class="nv">src: </span><span class="p">[</span><span class="s">'src/**/*.cson'</span> <span class="p">]</span>
+      <span class="nv">dest: </span><span class="s">'lib'</span>
+      <span class="nv">ext: </span><span class="s">'.json'</span>
+
+<span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s">'grunt-cson'</span><span class="p">)</span>
+</pre></div>
+
+<p>Then simply run <code>grunt cson</code> to compile all the <code>.cson</code> files under <code>src/</code>
+to <code>.json</code> files under <code>lib/</code>.</p>
+
+<h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<p>The following are supported as options to the task configuration.</p>
+
+<div class="highlight"><pre><span class="nv">cson:</span>
+  <span class="nv">options:</span>
+    <span class="nv">rootObject: </span><span class="kc">true</span> <span class="o">|</span> <span class="kc">false</span>
+</pre></div>
+
+<h4>
+<a name="rootobject" class="anchor" href="#rootobject"><span class="octicon octicon-link"></span></a>rootObject</h4>
+
+<p>Setting this to <code>true</code> will verify that each file parsed contains a single
+root object (such as in <code>package.json</code>). This option defaults to <code>false</code>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/kevinsawicki">kevinsawicki</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
