@@ -1,7 +1,6 @@
 path = require 'path'
 _ = require 'underscore'
 CSON = require 'season'
-mkdir = require('mkdirp').sync
 
 module.exports = (grunt) ->
   grunt.registerMultiTask 'cson', 'Compile CSON files to JSON', ->
@@ -18,7 +17,7 @@ module.exports = (grunt) ->
           grunt.log.error("#{source} does not contain a root object")
           return false
 
-        mkdir path.dirname(destination)
+        grunt.file.mkdir(path.dirname(destination))
         CSON.writeFileSync(destination, object)
         grunt.log.writeln("File #{destination.cyan} created.")
       catch error
