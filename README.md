@@ -32,3 +32,18 @@ grunt.loadNpmTasks('grunt-cson')
 
 Then simply run `grunt cson` to compile all the `.cson` files under `src/`
 to `.json` files under `lib/`.
+
+### Options
+
+The following are supported as options to the task configuration.
+
+```coffeescript
+cson:
+  options:
+    requireRoot: true | false
+```
+
+#### requireRoot
+
+Setting this to `true` will verify that each file parsed contains a single
+root object (such as in `package.json`). This option defaults to `false`.
