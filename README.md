@@ -40,10 +40,10 @@ The following are supported as options to the task configuration.
 ```coffeescript
 cson:
   options:
-    requireRoot: true | false
+    rootObject: true | false
 ```
 
-#### requireRoot
+#### rootObject
 
 Setting this to `true` will verify that each file parsed contains a single
 root object (such as in `package.json`). This option defaults to `false`.

@@ -4,7 +4,7 @@ CSON = require 'season'
 
 module.exports = (grunt) ->
   grunt.registerMultiTask 'cson', 'Compile CSON files to JSON', ->
-    requireRoot = @options().requireRoot ? false
+    rootObject = @options().rootObject ? false
 
     for mapping in @files
       source = mapping.src[0]
@@ -13,7 +13,7 @@ module.exports = (grunt) ->
       try
         content = CSON.readFileSync(source)
 
-        if requireRoot and (not _.isObject(content) or _.isArray(content))
+        if rootObject and (not _.isObject(content) or _.isArray(content))
           grunt.log.error("#{source} does not contain a root object")
           return false
 

@@ -51,7 +51,7 @@ describe 'CSON task', ->
       jsonPath = path.join(tempDirectory, 'spec', 'fixtures', 'invalid.json')
       expect(fs.existsSync(jsonPath)).toBe false
 
-  describe 'requireRoot option', ->
+  describe 'rootObject option', ->
     it 'fails if the CSON file does not have a root object', ->
       tempDirectory = temp.mkdirSync('grunt-cson-')
 
@@ -60,7 +60,7 @@ describe 'CSON task', ->
 
         cson:
           options:
-            requireRoot: true
+            rootObject: true
           glob_to_multiple:
             expand: true
             src: ['**/fixtures/array.cson' ]
