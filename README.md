@@ -1,4 +1,4 @@
-# Grunt CSON plugin
+# Grunt CSON plugin [![Build Status](https://travis-ci.org/kevinsawicki/grunt-cson.png)](https://travis-ci.org/kevinsawicki/grunt-cson)
 
 [Grunt](http://gruntjs.com) plugin to compile CSON files to JSON.
 
