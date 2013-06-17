@@ -1,6 +1,6 @@
 path = require 'path'
 _ = require 'underscore'
-CSON = require 'season'
+CoffeeScript = require 'coffee-script'
 
 module.exports = (grunt) ->
   grunt.registerMultiTask 'cson', 'Compile CSON files to JSON', ->
@@ -11,7 +11,8 @@ module.exports = (grunt) ->
       destination = mapping.dest
 
       try
-        content = CSON.readFileSync(source)
+        sourceData = grunt.file.read(source, 'utf8')
+        content = CoffeeScript.eval(sourceData, {bare: true, sandbox: true})
 
         if rootObject and (not _.isObject(content) or _.isArray(content))
           grunt.log.error("#{source} does not contain a root object")
