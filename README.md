@@ -1,4 +1,4 @@
-# Grunt CSON plugin [![Build Status](https://travis-ci.org/kevinsawicki/grunt-cson.png)](https://travis-ci.org/kevinsawicki/grunt-cson)
+# CSON Grunt plugin [![Build Status](https://travis-ci.org/kevinsawicki/grunt-cson.png)](https://travis-ci.org/kevinsawicki/grunt-cson)
 
 [Grunt](http://gruntjs.com) plugin to compile CSON files to JSON.
 
@@ -30,12 +30,12 @@ grunt.initConfig
 grunt.loadNpmTasks('grunt-cson')
 ```
 
-Then simply run `grunt cson` to compile all the `.cson` files under `src/`
-to `.json` files under `lib/`.
+Then run `grunt cson` to compile all the `.cson` files under `src/` to `.json`
+files under `lib/`.
 
 ### Options
 
-The following are supported as options to the task configuration.
+The following are options are supported when configuring the task.
 
 ```coffeescript
 cson:
