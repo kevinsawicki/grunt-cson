@@ -15,14 +15,24 @@ module.exports = (grunt) ->
         content = CoffeeScript.eval(sourceData, {bare: true, sandbox: true})
 
         if rootObject and (not _.isObject(content) or _.isArray(content))
-          grunt.log.error("#{source} does not contain a root object")
+          grunt.log.error("#{source.yellow} does not contain a root object.")
           return false
 
         json = JSON.stringify(content, null, 2)
         grunt.file.write(destination, "#{json}\n")
         grunt.log.writeln("File #{destination.cyan} created.")
       catch error
-        grunt.log.error("Parsing #{source.cyan} failed: #{error.message}")
+        grunt.log.writeln("Parsing #{source.yellow} failed.")
+        {message, location} = error
+        grunt.log.error(message.red) if message
+        if location?
+          start = error.location.first_line
+          end = error.location.last_line
+          lines = sourceData.split('\n')
+          for lineNumber in [start..end]
+            errorLine = lines[lineNumber]
+            continue unless errorLine?
+            grunt.log.error("#{lineNumber+1}: #{lines[lineNumber]}")
         return false
 
     fileCount = @files.length
