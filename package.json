@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "underscore-plus": "1.x",
-    "coffee-script": "~1.6.3"
+    "coffee-script": "~1.7.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
