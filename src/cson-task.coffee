@@ -1,5 +1,5 @@
 path = require 'path'
-_ = require 'underscore'
+_ = require 'underscore-plus'
 CoffeeScript = require 'coffee-script'
 
 module.exports = (grunt) ->
