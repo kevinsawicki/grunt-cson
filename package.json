@@ -35,7 +35,7 @@
   "devDependencies": {
     "jasmine-focused": "1.x",
     "grunt": "~0.4.1",
-    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-coffee": "~0.9.0",
     "grunt-cli": "~0.1.9",
     "grunt-shell": "~0.2.2",
     "rimraf": "~2.1.4",
