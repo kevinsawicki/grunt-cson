@@ -32,9 +32,8 @@ module.exports = (grunt) ->
     {rootObject} = options
     rootObject ?= false
 
-    @files.forEach (mapping) ->
-      [source] = mapping.src
-      destination = mapping.dest
+    @files.forEach ({src, dest}) ->
+      [source] = src
 
       try
         sourceData = grunt.file.read(source, 'utf8')
@@ -52,8 +51,8 @@ module.exports = (grunt) ->
           json = "#{JSON.stringify(content, null, 2)}\n"
           writeToCache(grunt, fileCachePath, json) if fileCachePath
 
-        grunt.file.write(destination, json)
-        grunt.log.writeln("File #{destination.cyan} created.")
+        grunt.file.write(dest, json)
+        grunt.log.writeln("File #{dest.cyan} created.")
 
       catch error
         grunt.log.writeln("Parsing #{source.yellow} failed.")
