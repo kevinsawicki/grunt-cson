@@ -1,26 +1,60 @@
+crypto = require 'crypto'
 path = require 'path'
 _ = require 'underscore-plus'
 CSONParser = require 'cson-safe'
 
+csonVersion = require('cson-safe/package.json').version
+
+getCachePath = (source, options={}) ->
+  {rootObject, cachePath} = options
+  return null unless cachePath
+
+  sha1 = crypto.createHash('sha1').update(source, 'utf8').digest('hex')
+  if rootObject
+    folderName = "#{csonVersion}-require-root"
+  else
+    folderName = csonVersion
+  path.join(cachePath, folderName, "#{sha1}.json")
+
+readFromCache = (grunt, fileCachePath) ->
+  try
+    grunt.file.read(fileCachePath, 'utf8')
+  catch error
+    null
+
+writeToCache = (grunt, fileCachePath, json) ->
+  try
+    grunt.file.write(fileCachePath, json)
+
 module.exports = (grunt) ->
   grunt.registerMultiTask 'cson', 'Compile CSON files to JSON', ->
-    rootObject = @options().rootObject ? false
+    options = @options()
+    {rootObject} = options
+    rootObject ?= false
 
-    for mapping in @files
-      source = mapping.src[0]
+    @files.forEach (mapping) ->
+      [source] = mapping.src
       destination = mapping.dest
 
       try
         sourceData = grunt.file.read(source, 'utf8')
-        content = CSONParser.parse(sourceData)
 
-        if rootObject and (not _.isObject(content) or _.isArray(content))
-          grunt.log.error("#{source.yellow} does not contain a root object.")
-          return false
+        fileCachePath = getCachePath(sourceData, options)
+        json = readFromCache(grunt, fileCachePath) if fileCachePath
 
-        json = JSON.stringify(content, null, 2)
-        grunt.file.write(destination, "#{json}\n")
+        unless json?
+          content = CSONParser.parse(sourceData)
+
+          if rootObject and (not _.isObject(content) or _.isArray(content))
+            grunt.log.error("#{source.yellow} does not contain a root object.")
+            return false
+
+          json = "#{JSON.stringify(content, null, 2)}\n"
+          writeToCache(grunt, fileCachePath, json) if fileCachePath
+
+        grunt.file.write(destination, json)
         grunt.log.writeln("File #{destination.cyan} created.")
+
       catch error
         grunt.log.writeln("Parsing #{source.yellow} failed.")
         {message, location} = error
