@@ -1,4 +1,4 @@
-# CSON Grunt plugin [![Build Status](https://travis-ci.org/kevinsawicki/grunt-cson.png)](https://travis-ci.org/kevinsawicki/grunt-cson)
+# CSON Grunt plugin [![Build Status](https://travis-ci.org/kevinsawicki/grunt-cson.png?branch=master)](https://travis-ci.org/kevinsawicki/grunt-cson)
 
 [Grunt](http://gruntjs.com) plugin to compile CSON files to JSON.
 
@@ -13,7 +13,7 @@ npm install grunt-cson
   * Run `npm install`
   * Run `grunt` to compile the CoffeeScript code
   * Run `grunt test` to run the specs
-  
+
 ## Configuring
 
 Add the following to your `Gruntfile.coffee`:
