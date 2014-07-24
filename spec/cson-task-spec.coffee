@@ -86,13 +86,14 @@ describe 'CSON task', ->
       spyOn(CSONParser, 'parse').andCallThrough()
 
       tempDirectory = temp.mkdirSync('grunt-cson-')
+      cacheDirectory = path.join(tempDirectory, 'cache')
 
       grunt.config.init
         pkg: grunt.file.readJSON(path.join(__dirname, 'fixtures', 'package.json'))
 
         cson:
           options:
-            cachePath: path.join(tempDirectory, 'cache')
+            cachePath: cacheDirectory
 
           glob_to_multiple:
             expand: true
@@ -115,3 +116,4 @@ describe 'CSON task', ->
         expect(_.isEqual(JSON.parse(json1), {a: 1, b: {c: true}})).toBe true
         expect(json1).toBe json2
         expect(CSONParser.parse.callCount).toBe 1
+        expect(fs.readdirSync(cacheDirectory).length).toBe 1
