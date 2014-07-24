@@ -59,8 +59,8 @@ module.exports = (grunt) ->
         {message, location} = error
         grunt.log.error(message.red) if message
         if location?
-          start = error.location.first_line
-          end = error.location.last_line
+          start = location.first_line
+          end = location.last_line
           lines = sourceData.split('\n')
           for lineNumber in [start..end]
             errorLine = lines[lineNumber]
