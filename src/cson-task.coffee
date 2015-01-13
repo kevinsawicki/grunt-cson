@@ -55,11 +55,10 @@ module.exports = (grunt) ->
         grunt.file.write(dest, json)
         fileCount++
         grunt.log.writeln("File #{dest.cyan} created.")
-
       catch error
         grunt.log.writeln("Parsing #{source.yellow} failed.")
         {message, location} = error
-        message ?= 'Unknown error'
+        message = 'Unknown error' unless message
         grunt.log.error(message.red)
         if location?
           start = location.first_line
@@ -70,5 +69,7 @@ module.exports = (grunt) ->
             continue unless errorLine?
             grunt.log.error("#{lineNumber+1}: #{lines[lineNumber]}")
 
+      return
+
     grunt.log.ok("#{fileCount} #{grunt.util.pluralize(fileCount, 'file/files')} compiled to JSON.")
-    return false if @errorCount > 0
+    @errorCount is 0
