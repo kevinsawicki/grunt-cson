@@ -32,6 +32,7 @@ module.exports = (grunt) ->
     {rootObject} = options
     rootObject ?= false
     fileCount = 0
+    compileFailure = false
 
     @files.forEach ({src, dest}) ->
       [source] = src
@@ -56,6 +57,7 @@ module.exports = (grunt) ->
         fileCount++
         grunt.log.writeln("File #{dest.cyan} created.")
       catch error
+        compileFailure = true
         grunt.log.writeln("Parsing #{source.yellow} failed.")
         {message, location} = error
         message = 'Unknown error' unless message
@@ -72,4 +74,4 @@ module.exports = (grunt) ->
       return
 
     grunt.log.ok("#{fileCount} #{grunt.util.pluralize(fileCount, 'file/files')} compiled to JSON.")
-    @errorCount is 0
+    return false if @compileFailure
