@@ -31,6 +31,7 @@ module.exports = (grunt) ->
     options = @options()
     {rootObject} = options
     rootObject ?= false
+    fileCount = 0
 
     @files.forEach ({src, dest}) ->
       [source] = src
@@ -46,18 +47,20 @@ module.exports = (grunt) ->
 
           if rootObject and (not _.isObject(content) or _.isArray(content))
             grunt.log.error("#{source.yellow} does not contain a root object.")
-            return false
+            return
 
           json = "#{JSON.stringify(content, null, 2)}\n"
           writeToCache(grunt, fileCachePath, json) if fileCachePath
 
         grunt.file.write(dest, json)
+        fileCount++
         grunt.log.writeln("File #{dest.cyan} created.")
 
       catch error
         grunt.log.writeln("Parsing #{source.yellow} failed.")
         {message, location} = error
-        grunt.log.error(message.red) if message
+        message ?= 'Unknown error'
+        grunt.log.error(message.red)
         if location?
           start = location.first_line
           end = location.last_line
@@ -66,7 +69,6 @@ module.exports = (grunt) ->
             errorLine = lines[lineNumber]
             continue unless errorLine?
             grunt.log.error("#{lineNumber+1}: #{lines[lineNumber]}")
-        return false
 
-    fileCount = @files.length
     grunt.log.ok("#{fileCount} #{grunt.util.pluralize(fileCount, 'file/files')} compiled to JSON.")
+    return false if @errorCount > 0
