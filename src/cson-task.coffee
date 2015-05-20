@@ -55,7 +55,7 @@ module.exports = (grunt) ->
 
         grunt.file.write(dest, json)
         fileCount++
-        grunt.log.writeln("File #{dest.cyan} created.")
+        grunt.verbose.writeln("File #{dest.cyan} created.")
       catch error
         compileFailure = true
         grunt.log.writeln("Parsing #{source.yellow} failed.")
