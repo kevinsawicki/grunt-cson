@@ -2,7 +2,7 @@ fs = require 'fs'
 path = require 'path'
 
 _ = require 'underscore-plus'
-CSONParser = require 'cson-safe'
+CSONParser = require 'cson-parser'
 grunt = require 'grunt'
 temp = require 'temp'
 

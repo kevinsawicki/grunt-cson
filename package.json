@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "underscore-plus": "^1",
-    "cson-safe": "^1.0.3"
+    "cson-parser": "^1.0.3"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"

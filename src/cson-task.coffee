@@ -1,9 +1,9 @@
 crypto = require 'crypto'
 path = require 'path'
 _ = require 'underscore-plus'
-CSONParser = require 'cson-safe'
+CSONParser = require 'cson-parser'
 
-csonVersion = require('cson-safe/package.json').version
+csonVersion = require('cson-parser/package.json').version
 
 getCachePath = (source, options={}) ->
   {rootObject, cachePath} = options
