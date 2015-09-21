@@ -26,12 +26,7 @@
     "name": "Kevin Sawicki",
     "email": "kevinsawicki@gmail.com"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/kevinsawicki/grunt-cson/raw/master/LICENSE.md"
-    }
-  ],
+  "license": "MIT",
   "devDependencies": {
     "jasmine-focused": "1.x",
     "grunt": "~0.4.1",
