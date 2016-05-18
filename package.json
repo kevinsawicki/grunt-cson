@@ -42,6 +42,6 @@
     "cson-parser": "^1.0.3"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0"
+    "grunt": ">=0.4.0"
   }
 }
